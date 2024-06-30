@@ -250,7 +250,7 @@ bool vps::is_valid(string &s) {
             st.push('}');
         } else if (c == '[') {
             st.push(']');
-        } else if (st.empty() or st.top() != c) {
+        } else if (st.empty() || st.top() != c) {
             return false;
         } else {
             st.pop();
