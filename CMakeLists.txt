@@ -3,18 +3,22 @@ project(cp-base)
 
 set(CMAKE_CXX_STANDARD 14)
 
-# Add the library
-add_library(cp-base SHARED mkl.cpp)
+set(PROJECT_HEADERS_DIR ${PROJECT_SOURCE_DIR}/include)
+set(PROJECT_SOURCES_DIR ${PROJECT_SOURCE_DIR}/src)
+set(PROJECT_TESTS_DIR ${PROJECT_SOURCE_DIR}/test)
 
-# Find Google Test
+file(GLOB_RECURSE HEADERS ${PROJECT_HEADERS_DIR}/*.h)
+file(GLOB_RECURSE SOURCES ${PROJECT_SOURCES_DIR}/*.cpp)
+file(GLOB_RECURSE TESTS ${PROJECT_TESTS_DIR}/*.cpp)
+
 find_package(GTest REQUIRED)
 
-# Add executable for testing
-add_executable(tests test_mkl.cpp)
-target_link_libraries(tests GTest::GTest GTest::Main cp-base)
-
-# Enable testing
 enable_testing()
 
-# Register the test
-add_test(NAME MyTest COMMAND tests)
+add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${TESTS})
+
+target_link_libraries(${PROJECT_NAME} GTest::GTest GTest::Main)
+
+add_test(test ${PROJECT_NAME})
+
+include_directories(${PROJECT_HEADERS_DIR})
