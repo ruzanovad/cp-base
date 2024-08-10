@@ -11,14 +11,10 @@ file(GLOB_RECURSE HEADERS ${PROJECT_HEADERS_DIR}/*.h)
 file(GLOB_RECURSE SOURCES ${PROJECT_SOURCES_DIR}/*.cpp)
 file(GLOB_RECURSE TESTS ${PROJECT_TESTS_DIR}/*.cpp)
 
-find_package(GTest REQUIRED)
-
-enable_testing()
-
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${TESTS})
 
-target_link_libraries(${PROJECT_NAME} GTest::GTest GTest::Main)
+target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
 
-add_test(test ${PROJECT_NAME})
+add_test(NAME test COMMAND ${PROJECT_NAME})
 
 include_directories(${PROJECT_HEADERS_DIR})
