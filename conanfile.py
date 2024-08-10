@@ -27,13 +27,6 @@ class CpBaseConan(ConanFile):
     #     mk = MakeDeps(self)
     #     mk.generate()
 
-
-    # def build(self):
-    #     cmake = CMake(self)
-    #     cmake.configure(cli_args=["-B", "build", "-S", "."])
-    #     cmake.build(cli_args=[f"--target {self.name}"])
-    #     cmake.test()
-
     # def package(self):
     #     cmake = CMake(self)
     #     cmake.install()
@@ -41,5 +34,5 @@ class CpBaseConan(ConanFile):
     # def package_info(self):
     #     pass
 
-    # def layout(self):
-    #     cmake_layout(self)
+    def layout(self):
+        cmake_layout(self)

@@ -1,7 +1,12 @@
 cmake_minimum_required(VERSION 3.23)
+
 project(cp-base)
 
-set(CMAKE_CXX_STANDARD 14)
+# target_compile_definitions(${PROJECT_NAME} PUBLIC _GLIBCXX_USE_CXX11_ABI=1)
+
+set(CMAKE_CXX_STANDARD 11)
+# set(CMAKE_LIBSTD)
+# set(CMAKE_GLIB)
 
 set(PROJECT_HEADERS_DIR ${PROJECT_SOURCE_DIR}/include)
 set(PROJECT_SOURCES_DIR ${PROJECT_SOURCE_DIR}/src)
@@ -15,7 +20,7 @@ add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${TESTS})
 find_package(GTest REQUIRED)
 
 # if(GTest_FOUND)
-target_link_libraries(${PROJECT_NAME} GTest::Gtest)
+target_link_libraries(${PROJECT_NAME} GTest::gtest)
 
 include_directories(${PROJECT_HEADERS_DIR})
 enable_testing()

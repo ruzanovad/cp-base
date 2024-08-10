@@ -14,17 +14,19 @@ build: mkdir-build conan-build cmake-load cmake-build conan-deactivate
 conan-build:
 	@echo "Running Conan..."
 	@conan install . --output-folder $(BUILD_DIR) --build=missing
-	source conanbuild.sh
+	sh build/build/Release/generators/conanbuild.sh
+
 
 conan-deactivate:
-	cd $(BUILD_DIR); source deactivate_conanbuild.sh
-reload: format-clang conan-build cmake-load cmake-build conan-deactivate
+	sh build/build/Release/generators/conanbuild.sh
+
+reload: conan-build cmake-load cmake-build conan-deactivate
 
 mkdir-build:
 	[ -d ./build ] | mkdir -p build
 
 cmake-load:
-	cd $(BUILD_DIR); cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
+	cd $(BUILD_DIR); cmake .. -DCMAKE_BUILD_TYPE=Release
 
 cmake-build:
 	cd $(BUILD_DIR);cmake --build . --target $(PROJECT_NAME)
