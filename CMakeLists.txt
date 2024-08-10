@@ -12,9 +12,16 @@ file(GLOB_RECURSE SOURCES ${PROJECT_SOURCES_DIR}/*.cpp)
 file(GLOB_RECURSE TESTS ${PROJECT_TESTS_DIR}/*.cpp)
 
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${TESTS})
+find_package(GTest REQUIRED)
 
-target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
-
-add_test(NAME test COMMAND ${PROJECT_NAME})
+# if(GTest_FOUND)
+target_link_libraries(${PROJECT_NAME} GTest::Gtest)
 
 include_directories(${PROJECT_HEADERS_DIR})
+enable_testing()
+add_test(NAME test COMMAND ${PROJECT_NAME})
+
+
+# else()
+#     message(FATAL_ERROR "Zlib not found")
+# endif()

@@ -3,26 +3,28 @@ SRC_DIR := src
 INCLUDE_DIR := include
 TEST_DIR := test
 BUILD_DIR := build
-CONAN_DIR := $(BUILD_DIR)/conan
+# CONAN_DIR := $(BUILD_DIR)/conan
 
 all: build exec
 
 run: reload exec
 
-build: mkdir-build conan cmake-load cmake-build
+build: mkdir-build conan-build cmake-load cmake-build conan-deactivate
 
-conan:
+conan-build:
 	@echo "Running Conan..."
-	@mkdir -p $(CONAN_DIR)
-	conan install . --build=missing --output-folder=$(CONAN_DIR)
+	@conan install . --output-folder $(BUILD_DIR) --build=missing
+	source conanbuild.sh
 
-reload: format-clang conan cmake-load cmake-build
+conan-deactivate:
+	cd $(BUILD_DIR); source deactivate_conanbuild.sh
+reload: format-clang conan-build cmake-load cmake-build conan-deactivate
 
 mkdir-build:
 	[ -d ./build ] | mkdir -p build
 
 cmake-load:
-	cd $(BUILD_DIR);cmake ..
+	cd $(BUILD_DIR); cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
 
 cmake-build:
 	cd $(BUILD_DIR);cmake --build . --target $(PROJECT_NAME)
@@ -35,3 +37,6 @@ clean:
 
 exec:
 	./$(BUILD_DIR)/$(PROJECT_NAME)
+
+.PHONY: all build cmake-build run clean
+
