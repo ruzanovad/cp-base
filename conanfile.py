@@ -16,23 +16,3 @@ class CpBaseConan(ConanFile):
 
     def build_requirements(self):
         self.tool_requires("cmake/3.23.5")
-
-    # def configure(self):
-    #     pass
-    # def generate(self):
-    #     tc = CMakeToolchain(self)
-    #     tc.generate()
-    #     deps = CMakeDeps(self)
-    #     deps.generate()
-    #     mk = MakeDeps(self)
-    #     mk.generate()
-
-    # def package(self):
-    #     cmake = CMake(self)
-    #     cmake.install()
-
-    # def package_info(self):
-    #     pass
-
-    def layout(self):
-        cmake_layout(self)
