@@ -1,7 +1,9 @@
 # Requirements
 1. conan 2
 2. cmake 3.23 and higher
+    Although Conan can automatically install CMake, it’s recommended to have CMake version 3.23 or higher available.
 3. clang-format
+
 
 # Build & Run
 All commands allowed in [Makefile](./Makefile)
