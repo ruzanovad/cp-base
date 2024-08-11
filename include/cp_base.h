@@ -1,5 +1,5 @@
-#ifndef MY_MKL
-#define MY_MKL
+#ifndef cp_base
+#define cp_base
 
 #include <cmath>
 #include <string>
@@ -96,4 +96,4 @@ void bfs(int node, vector<vector<int>>& graph);
 void dfs(int node, vector<vector<int>>& graph, vector<bool>& visited,
          vector<int> path);
 }  // namespace graph_theory
-#endif  // MY_MKL
+#endif  // cp_base
