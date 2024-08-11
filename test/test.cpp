@@ -1,5 +1,5 @@
-#include <gtest/gtest.h>
 #include "cp_base.h"
+#include <gtest/gtest.h>
 
 TEST(BinarySearchTest, FindsElement) {
   vector<int> arr = {1, 2, 3, 4, 5};
@@ -34,7 +34,7 @@ TEST(GCDTest, ZeroCases) {
   EXPECT_EQ(number_theory::gcd(10, 0), 10);
 
   EXPECT_EQ(number_theory::gcd_no_recursion(0, 0),
-            0);  // Typically defined as 0
+            0);
   EXPECT_EQ(number_theory::gcd_no_recursion(0, 10), 10);
   EXPECT_EQ(number_theory::gcd_no_recursion(10, 0), 10);
 }
