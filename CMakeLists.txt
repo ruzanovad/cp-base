@@ -4,7 +4,7 @@ project(cp-base)
 
 # target_compile_definitions(${PROJECT_NAME} PUBLIC _GLIBCXX_USE_CXX11_ABI=1)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 # set(CMAKE_LIBSTD)
 # set(CMAKE_GLIB)
 
